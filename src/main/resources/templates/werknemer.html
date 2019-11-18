@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='werknemer')"></head>
+<body>
+<div th:if="${werknemer} != null" th:object="${werknemer}">
+    <h1 th:text="|*{voornaam} *{familienaam}|"></h1>
+
+    <b>Voornaam</b>
+    <p th:text="*{voornaam}"></p>
+
+    <b>Familienaam</b>
+    <p th:text="*{familienaam}"></p>
+
+    <b>EmailAdres</b>
+    <p th:text="*{email}"></p>
+
+    <b>Salaris</b>
+    <p th:text="*{{salaris}}"></p>
+
+    <b>Jobtitel</b>
+    <p th:text="*{jobtitel.naam}"></p>
+
+    <b>Geboorte</b>
+    <p th:text="*{{geboorte}}"></p>
+
+    <div th:if="*{chef != null}">
+        <b>Chef</b>
+        <a th:href="@{/werknemer/{id}(id=*{chef.id})}"><span th:text="|*{chef.voornaam} *{chef.familienaam}|"></span></a>
+    </div>
+
+    <b>Ondergeschikten</b>
+    <li th:each="werknemer:*{subordinates}" th:object="${werknemer}">
+        <a th:href="@{/werknemer/{id}(id=*{id})}"><span th:text="|*{voornaam} *{familienaam}|"></span></a>
+    </li>
+
+    <b>Foto</b>
+
+    <img th:alt="|*{voornaam} *{familienaam}|" th:src="@{/img/{id}.jpg(id=*{id})}">
+
+
+    <a th:href="@{/werknemer/{id}/opslag(id=*{id})}">Opslag</a>
+    <a th:href="@{/werknemer/{id}/rijksregisternummer(id=*{id})}">Rijksregisternummer</a>
+</div>
+
+</body>
+</html>

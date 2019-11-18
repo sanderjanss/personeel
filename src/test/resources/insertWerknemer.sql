@@ -1,0 +1,2 @@
+insert into werknemers(familienaam, voornaam, email, chefid, jobtitelid, salaris, paswoord, geboorte, rijksregisternr)
+values ('testVoor', 'testAchter', 'test@email.com', 1, (select id from jobtitels where naam = 'test'), 2000, 'test', '01/01/1960', 60010100172)

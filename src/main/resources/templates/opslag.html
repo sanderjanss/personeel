@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='opslag')"></head>
+<body>
+<div th:if="${werknemer} != null" th:object="${werknemer}">
+    <h1>Opslag voor <span th:text="|*{voornaam} *{familienaam}|"></span></h1>
+    <b>Huidig Salaris</b>
+    <p th:text="*{{salaris}}"></p>
+</div>
+    <form th:object="${opslagForm}" th:action="@{/werknemer/{id}/opslag/toevoegen(id=${werknemer.id})}"  method="post">
+        <label>Bedrag <span th:errors="*{bedrag}"></span> <input name="bedrag" th:field="*{bedrag}" type="number" required min="1" autofocus>
+        </label>
+        <input type="submit" value="Opslag">
+    </form>
+
+<script th:src="@{/js/preventDoubleSubmit.js}"></script>
+</body>
+</html>

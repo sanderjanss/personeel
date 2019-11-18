@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='jobtitel')"></head>
+<body>
+<h1>Jobtitels</h1>
+<nav>
+    <ul>
+        <li th:each="jobtitel:${jobtitels}" th:object="${jobtitel}">
+            <a th:href="@{/jobtitel/{id}(id=*{id})}"><span th:text="*{naam}"></span></a>
+        </li>
+    </ul>
+</nav>
+<div th:if="${jobtitel} != null" th:object="${jobtitel}">
+    <h2 th:text="*{naam}"></h2>
+    <li th:each="werknemer:${jobtitel.werknemers}" th:object="${werknemer}">
+               <a th:href="@{/werknemer/{id}(id=*{id})}"><span th:text="|${werknemer.voornaam} ${werknemer.familienaam}|"></span></a>
+    </li>
+
+</div>
+
+</body>
+</html>
