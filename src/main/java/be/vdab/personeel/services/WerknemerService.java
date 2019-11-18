@@ -9,6 +9,6 @@ public interface WerknemerService {
 
     Optional<Werknemer> findById(long id);
     void opslagBedrag(long id, BigDecimal bedrag);
-    void setRijksregister(long id, long nummer);
+    void setRijksregister(long id, String nummer);
 
 }

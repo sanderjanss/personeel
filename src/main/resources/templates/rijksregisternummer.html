@@ -4,16 +4,22 @@
 <body>
 <div th:if="${werknemer} != null" th:object="${werknemer}">
     <h1>Rijksregisternummer van <span th:text="|*{voornaam} *{familienaam}|"></span></h1>
-<!--    <p th:text="*{rijksregisternr}"></p>-->
 
 </div>
-<form th:object="${form}" th:action="@{/werknemer/{id}/rijksregisternummer/toevoegen(id=${werknemer.id})}"  method="post">
-    <input hidden name="id" th:value="*{id}" th:field="*{id}">
-    <label>Rijksregisternummer <span th:errors="*{rijksregisternummer}"></span> <input name="rijksregisternummer" th:field="*{rijksregisternummer}" type="number"  autofocus >
-    </label>
+<form th:object="${rijksregisterForm}" th:action="@{/werknemer/{id}/rijksregisternummer/toevoegen(id=${werknemer.id})}"  method="post">
+    <input hidden name="rijksId" th:field="*{rijksId}">
+    <label>Rijksregisternummer
+        <span th:errors="*{rijksregisternummer}"></span> <input name="rijksregisternummer" th:field="*{rijksregisternummer}" type="number"  autofocus >
 
+    </label>
     <input type="submit" value="Opslaan">
+    <div th:if="${#fields.hasGlobalErrors()}">
+        <div class="fout" th:each="err : ${#fields.globalErrors()}"
+             th:text="${err}"></div>
+    </div>
 </form>
+
+
 
 <script th:src="@{/js/preventDoubleSubmit.js}"></script>
 </body>

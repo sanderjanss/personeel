@@ -33,8 +33,8 @@ public class DefaultWerknemerService implements WerknemerService {
 
     @Override
     @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
-    public void setRijksregister(long id, long nummer) {
-        werknemerRepository.findById(id).ifPresent(werknemer -> werknemer.setRijksregisternr(nummer));
+    public void setRijksregister(long id, String nummer) {
+        werknemerRepository.findById(id).ifPresent(werknemer -> werknemer.setRijksregisternr(Long.parseLong(nummer)));
     }
 
 

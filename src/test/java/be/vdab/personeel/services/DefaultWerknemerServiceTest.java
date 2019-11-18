@@ -45,7 +45,7 @@ public class DefaultWerknemerServiceTest {
 
     @Test
     public void setRijksregisterGeeftNieuwRijksregisternummer() {
-        service.setRijksregister(1, 60010100172L);
+        service.setRijksregister(1, "60010100172");
         assertThat(werknemer.getRijksregisternr()).isEqualByComparingTo(60010100172L);
         verify(repository).findById(1L);
     }

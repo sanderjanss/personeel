@@ -46,25 +46,4 @@ public class WerknemerTest {
         assertThatIllegalArgumentException().isThrownBy(()->werknemer.opslag(BigDecimal.ZERO));
     }
 
-    @Test
-    public void correctRijksregisterNummerLukt(){
-    }
-
-    @Test
-    public void teKleinRijksregisterNummerMislukt(){
-        assertThatIllegalArgumentException().isThrownBy(()->werknemer.setRijksregisternr(6001010017L));
-    }
-    @Test
-    public void teGrootRijksregisterNummerMislukt(){
-        assertThatIllegalArgumentException().isThrownBy(()->werknemer.setRijksregisternr(600101001711L));
-    }
-    @Test
-    public void verkeerdeGeboorteDatumRijksregisterNummerMislukt(){
-        assertThatIllegalArgumentException().isThrownBy(()->werknemer.setRijksregisternr(61010100172L));
-    }
-    @Test
-    public void juisteGeboorteDatumRijksregisterNummerLukt(){
-        werknemer.setRijksregisternr(60010100172L);
-    }
-
 }

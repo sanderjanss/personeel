@@ -10,10 +10,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -40,7 +37,7 @@ public class Werknemer implements Serializable {
     private Werknemer chef;
 
     @OneToMany(mappedBy = "chef")
-    private Set<Werknemer> subordinates = new HashSet<>();
+    private Set<Werknemer> subordinates = new LinkedHashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "jobtitelid")
@@ -55,7 +52,6 @@ public class Werknemer implements Serializable {
     @DateTimeFormat(pattern = "d-M-yy")
     private LocalDate geboorte;
     @Column(unique = true)
-
     private long rijksregisternr;
     @Version
     private long versie;
@@ -137,14 +133,7 @@ public class Werknemer implements Serializable {
 
 
     public void setRijksregisternr(long nummer){
-        long geboortejaar = nummer/1000000000;
-        long geboortemaand = (nummer/10000000)%100;
-        long geboortedag = (nummer/100000)%100;
-        if(geboorte.getDayOfMonth() == geboortedag && geboorte.getMonthValue() == geboortemaand && (geboorte.getYear()%100) == geboortejaar) {
-            rijksregisternr = nummer;
-        }
-        else{
-            throw new IllegalArgumentException();
-        }
+
+        rijksregisternr = nummer;
     }
 }

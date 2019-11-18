@@ -24,7 +24,7 @@ public class JobtitelController {
     }
 
     @GetMapping("{id}")
-    public ModelAndView jobtitel(@PathVariable long id){
+    public ModelAndView jobtitelSpecifiek(@PathVariable long id){
         ModelAndView modelAndView = new ModelAndView("jobtitel", "jobtitels", jobtitelService.findAll());
         jobtitelService.findById(id).ifPresent(jobtitel ->
                 modelAndView.addObject(jobtitel));
